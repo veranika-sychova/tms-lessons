@@ -1,6 +1,6 @@
 package by.tms.lesson12.homework2;
 
-import by.teachmeskills.lesson12.homework1.exception.InvalidDocumentNumberException;
+import by.tms.lesson12.homework1.exception.InvalidDocumentNumberException;
 
 import java.io.*;
 import java.util.Scanner;

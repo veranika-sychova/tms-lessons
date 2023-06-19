@@ -1,6 +1,6 @@
 package by.tms.lesson7.homework3.financial_invoice;
 
-import by.teachmeskills.lesson7.homework3.Document;
+import by.tms.lesson7.homework3.Document;
 
 import java.util.Date;
 

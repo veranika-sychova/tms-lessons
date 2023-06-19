@@ -1,6 +1,6 @@
 package by.tms.lesson12.homework1;
 
-import by.teachmeskills.lesson12.homework1.exception.InvalidDocumentNumberException;
+import by.tms.lesson12.homework1.exception.InvalidDocumentNumberException;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -39,7 +39,6 @@ public class Main {
             throw new InvalidDocumentNumberException ("Line " + line + " length is invalid.");
         }
         if (line.contains("!") || line.contains("@") || line.contains("#")){
-            // тут я не перечисляю все служебные символы для локаничности кода, но понимаю, что вообще нужно их все перечислить :)
             throw new InvalidDocumentNumberException("Line " + line + " contains prohibited symbols.");
         }
         if (!line.startsWith("docnum") && !line.startsWith("contract")){

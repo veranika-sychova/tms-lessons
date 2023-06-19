@@ -1,8 +1,8 @@
 package by.tms.lesson7.homework3;
 
-import by.teachmeskills.lesson7.homework3.employee.Employee;
-import by.teachmeskills.lesson7.homework3.financial_invoice.FinancialInvoice;
-import by.teachmeskills.lesson7.homework3.goods_supply.GoodsSupply;
+import by.tms.lesson7.homework3.employee.Employee;
+import by.tms.lesson7.homework3.financial_invoice.FinancialInvoice;
+import by.tms.lesson7.homework3.goods_supply.GoodsSupply;
 
 import java.util.Date;
 

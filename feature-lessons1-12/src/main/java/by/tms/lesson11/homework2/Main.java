@@ -1,7 +1,7 @@
 package by.tms.lesson11.homework2;
 
-import by.teachmeskills.lesson11.homework2.exception.WrongLoginException;
-import by.teachmeskills.lesson11.homework2.exception.WrongPasswordException;
+import by.tms.lesson11.homework2.exception.WrongLoginException;
+import by.tms.lesson11.homework2.exception.WrongPasswordException;
 
 public class Main {
     public static void main(String[] args) {

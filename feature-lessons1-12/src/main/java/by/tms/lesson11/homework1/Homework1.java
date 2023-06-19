@@ -1,8 +1,8 @@
 package by.tms.lesson11.homework1;
 
-import by.teachmeskills.lesson11.homework1.exception.DoesNotEndWith1a2b;
-import by.teachmeskills.lesson11.homework1.exception.DoesNotStartWith555;
-import by.teachmeskills.lesson11.homework1.exception.NoABCSequenceException;
+import by.tms.lesson11.homework1.exception.DoesNotEndWith1a2b;
+import by.tms.lesson11.homework1.exception.DoesNotStartWith555;
+import by.tms.lesson11.homework1.exception.NoABCSequenceException;
 
 public class Homework1 {
     public static void main(String[] args) {
