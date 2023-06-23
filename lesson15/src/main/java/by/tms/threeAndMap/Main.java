@@ -36,16 +36,6 @@ public class Main {
         director4.assignSubordinate(engineer8);
         director4.assignSubordinate(engineer9);
 
-        Set<Engineer> engineerSet = new HashSet<>();
-        engineerSet.add(engineer1);
-        engineerSet.add(engineer2);
-        engineerSet.add(engineer3);
-        engineerSet.add(engineer4);
-        engineerSet.add(engineer5);
-        engineerSet.add(engineer6);
-        engineerSet.add(engineer7);
-        engineerSet.add(engineer8);
-        engineerSet.add(engineer9);
 
         // Testing ThreeSet >>>
         Set<Director> directorsSet = new TreeSet<>();
@@ -57,11 +47,38 @@ public class Main {
         System.out.println(directorsSet);
 
         //Testing Map >>>>>>
-        Map<String, Collection<? extends Worker>> workersMap = new HashMap<>();
-        workersMap.put("directors", directorsSet);
-        workersMap.put("engineers", engineerSet);
-        System.out.println("There are " + workersMap.get("directors").size() + " directors");
-        System.out.println("There are " + workersMap.get("engineers").size() + " directors");
+
+        List<Worker> workersList = new ArrayList<>();
+        workersList.add(director1);
+        workersList.add(director2);
+        workersList.add(director3);
+        workersList.add(director4);
+        workersList.add(engineer1);
+        workersList.add(engineer2);
+        workersList.add(engineer3);
+        workersList.add(engineer4);
+        workersList.add(engineer5);
+        workersList.add(engineer6);
+        workersList.add(engineer7);
+        workersList.add(engineer8);
+        workersList.add(engineer9);
+
+        Map<String, Integer> workersMap = new HashMap<>();
+        workersMap.put("directors", 0);
+        workersMap.put("engineers", 0);
+
+
+        for (int i = 0; i < workersList.size(); i++) {
+            if (workersList.get(i) instanceof Director) {
+                workersMap.put("directors", workersMap.get("directors") +1);
+            } else if (workersList.get(i) instanceof Engineer){
+                workersMap.put("engineers", workersMap.get("engineers") +1);
+            }
+        }
+
+        System.out.println("There are " + workersMap.get("directors") + " directors");
+        System.out.println("There are " + workersMap.get("engineers") + " engineers");
+
 
     }
 }
