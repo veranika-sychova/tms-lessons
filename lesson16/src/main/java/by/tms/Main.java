@@ -53,9 +53,7 @@ public class Main {
 
         List<Person> femaleWithKids = people.stream()
                 .filter(person -> person.getGender().equals("female"))
-                .filter(person -> person.getKids()
-                        .stream()
-                        .anyMatch(kid -> kid.getAge() < 12))
+                .filter(Main::hasKidsUnder12)
                 .collect(Collectors.toList());
 
         System.out.println(femaleWithKids);
@@ -67,6 +65,11 @@ public class Main {
                 .collect(Collectors.toSet());
 
         System.out.println(kidsAge);
+    }
+
+    public static boolean hasKidsUnder12 (Person person){
+        return person.getKids().stream()
+                .anyMatch(kid -> kid.getAge() < 12);
     }
 
 }
