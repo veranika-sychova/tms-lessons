@@ -5,9 +5,13 @@ import java.util.List;
 public class EmployeeService {
 
     public static boolean hasPrimarySubordinate(Director director, String subordinateLastName) {
+        if (subordinateLastName == null) {
+            System.out.println("Last name can not be null");
+            return false;
+        }
         List<Worker> subordinates = director.getSubordinates();
-        for (int i = 0; i < subordinates.size(); i++) {
-            String name = subordinates.get(i).getLastName();
+        for (Worker subordinate : subordinates) {
+            String name = subordinate.getLastName();
             if (name.equals(subordinateLastName)) {
                 return true;
             }
