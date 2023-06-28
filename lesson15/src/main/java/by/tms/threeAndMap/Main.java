@@ -64,20 +64,25 @@ public class Main {
         workersList.add(engineer9);
 
         Map<String, Integer> workersMap = new HashMap<>();
-        workersMap.put("directors", 0);
-        workersMap.put("engineers", 0);
-
 
         for (int i = 0; i < workersList.size(); i++) {
             if (workersList.get(i) instanceof Director) {
-                workersMap.put("directors", workersMap.get("directors") +1);
-            } else if (workersList.get(i) instanceof Engineer){
-                workersMap.put("engineers", workersMap.get("engineers") +1);
+                if (!workersMap.containsKey("directors")) {
+                    workersMap.put("directors", 1);
+                } else {
+                    workersMap.put("directors", workersMap.get("directors") + 1);
+                }
+            } else if (workersList.get(i) instanceof Engineer) {
+                if (!workersMap.containsKey("engineers")) {
+                    workersMap.put("engineers", 1);
+                } else {
+                    workersMap.put("engineers", workersMap.get("engineers") + 1);
+                }
             }
         }
 
-        System.out.println("There are " + workersMap.get("directors") + " directors");
-        System.out.println("There are " + workersMap.get("engineers") + " engineers");
+            System.out.println("There are " + workersMap.get("directors") + " directors");
+            System.out.println("There are " + workersMap.get("engineers") + " engineers");
 
 
     }
