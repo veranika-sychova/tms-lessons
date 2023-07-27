@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Запись на курсы</title>
+</head>
+
+<body>
+<h1>Запись на курсы</h1>
+<hr style="border-width: 2px;"/>
+
+<form method="post" action="http://localhost:8080/24/enrollment">
+    <div>
+       <b>Имя:</b>
+        <br/>
+        <input name="name"/>
+    </div>
+
+<p/>
+    <div>
+        <b>Язык программирования:</b>
+        <br/>
+        <input type="radio" name="programming-language", value="C++"> C++ </input>
+       <br/>
+        <input type="radio" name="programming-language", value="PHP"> PHP </input>
+        <br/>
+        <input type="radio" name="programming-language", value="Python"> Python </input>
+    </div>
+
+<p/>
+    <div>
+        <b>Дополнительная информация:</b>
+        <br/>
+        <textarea name="additional-info"></textarea>
+    </div>
+
+<p/>
+    <div>
+        <b>Секретное слово:</b>
+        <br/>
+        <input type="password" name="password"></input>
+    </div>
+
+ <p/>
+    <div>
+        <input type="submit" name="submit" value="Отправить">
+        <input type="reset" name="cancel" value="Очистить">
+    </div>
+
+</form>
+
+<p/>
+<hr style="border-width: 2px;"/>
+
+</body>
+
+</html>
