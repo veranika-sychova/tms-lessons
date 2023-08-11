@@ -16,7 +16,7 @@ import java.io.PrintWriter;
 @WebServlet ("/login")
 public class LoginServlet extends HttpServlet {
 
-    CustomerRepository customerRepository = new CustomerRepositoryImpl();
+    CustomerRepository customerRepository = CustomerRepositoryImpl.getInstance();
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -30,9 +30,7 @@ public class LoginServlet extends HttpServlet {
         } else if (customer.getPassword().equals(password)){
             HttpSession session = req.getSession();
             session.setAttribute("currentUserLogin", login);
-            System.out.println("Success");
-            PrintWriter writer = resp.getWriter();
-            writer.println("Success");
+            resp.sendRedirect("/27/account");
         } else {
             resp.getWriter().println("Invalid password");
         }

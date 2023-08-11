@@ -16,7 +16,7 @@ import java.io.PrintWriter;
 @WebServlet("/registration")
 public class RegistrationServlet extends HttpServlet {
 
-    CustomerRepository customerRepository = new CustomerRepositoryImpl();
+    CustomerRepository customerRepository = CustomerRepositoryImpl.getInstance();
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

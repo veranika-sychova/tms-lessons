@@ -10,14 +10,26 @@ import java.util.Map;
 
 import static by.tms.model.TaskStatus.CREATED;
 
-public class CustomerRepositoryImpl implements CustomerRepository{
+public class CustomerRepositoryImpl implements CustomerRepository {
 
-    private Map<String, Customer> db = new HashMap<>(){{
+    private static CustomerRepositoryImpl instance;
+
+    private CustomerRepositoryImpl() {
+    }
+
+    public static synchronized CustomerRepositoryImpl getInstance() {
+        if (instance == null) {
+            instance = new CustomerRepositoryImpl();
+        }
+        return instance;
+    }
+
+    private Map<String, Customer> db = new HashMap<>() {{
         put("login1", new Customer("login1", "pass1"));
         put("login2", new Customer("login2", "pass2", new ArrayList<Task>() {{
-           add(new Task("go to yoga", CREATED));
-           add(new Task("go to grocery", CREATED));
-           add(new Task("feed a cat", CREATED));
+            add(new Task("go to yoga", CREATED));
+            add(new Task("go to grocery", CREATED));
+            add(new Task("feed a cat", CREATED));
         }}));
         put("login3", new Customer("login3", "pass3", new ArrayList<Task>() {{
             add(new Task("go to university", CREATED));
@@ -32,6 +44,6 @@ public class CustomerRepositoryImpl implements CustomerRepository{
 
     @Override
     public void saveCustomer(String login, String password) {
-       db.put(login, new Customer(login, password));
+        db.put(login, new Customer(login, password));
     }
 }
