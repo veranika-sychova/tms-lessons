@@ -13,13 +13,19 @@
 <div>
     <ul>
 
+
         <c:forEach items="${tasks}" var="task">
+            <c:if test = "${task.taskStatus != 'DONE' || param.showAllTasks == 'true'}">
         <li>
             <strong>Status:</strong> ${task.taskStatus}
             <br>
             <strong>Summary:</strong> ${task.text}
-            <button onclick="changeStatus(this)">Change</button>
+            <form method="post" action="http://localhost:8080/27/task-update">
+                <input type="hidden" name="text" value="${task.text}"/>
+                <input type="submit" name="change" value="Change status"/>
+            </form>
         </li>
+            </c:if>
         </c:forEach>
 
     </ul>
@@ -37,6 +43,8 @@ Create a new task:
     <div>
         <input type="submit" name="submit" value="Submit">
     </div>
+
+    <a href="http://localhost:8080/27/account?showAllTasks=true">Show all tasks </a>
 
 </form>
 
