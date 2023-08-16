@@ -24,11 +24,11 @@ public class UpdateTaskServlet extends HttpServlet {
 
         String currentUserLogin = (String) req.getSession().getAttribute("currentUserLogin");
 
-        Customer customer = customerRepository.getCustomerByLogin(currentUserLogin);
+        Customer customer = customerRepository.getCustomerByLogin(currentUserLogin).orElseThrow();
 
         Task t = customer.getTasks().stream()
                 .filter(task -> task.getText().equals(text))
-                .findFirst().get();
+                .findFirst().orElseThrow();
 
         if (t.getTaskStatus().equals(TaskStatus.CREATED)){
             t.setTaskStatus(TaskStatus.IN_PROGRESS);

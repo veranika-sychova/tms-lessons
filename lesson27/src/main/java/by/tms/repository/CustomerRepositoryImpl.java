@@ -7,6 +7,7 @@ import by.tms.model.TaskStatus;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
 import static by.tms.model.TaskStatus.CREATED;
 
@@ -38,8 +39,8 @@ public class CustomerRepositoryImpl implements CustomerRepository {
     }};
 
     @Override
-    public Customer getCustomerByLogin(String login) {
-        return db.get(login);
+    public Optional<Customer> getCustomerByLogin(String login) {
+        return Optional.of(db.get(login));
     }
 
     @Override

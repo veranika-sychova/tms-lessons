@@ -27,7 +27,7 @@ public class CreateTaskServlet extends HttpServlet {
 
         String currentUserLogin = (String) req.getSession().getAttribute("currentUserLogin");
 
-        Customer customer = customerRepository.getCustomerByLogin(currentUserLogin);
+        Customer customer = customerRepository.getCustomerByLogin(currentUserLogin).orElseThrow();
 
         Task task = new Task(text, TaskStatus.CREATED);
 
