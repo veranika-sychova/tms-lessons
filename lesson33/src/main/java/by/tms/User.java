@@ -1,20 +1,42 @@
 package by.tms;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "users")
 public class User {
 
+    @Id
+    private Integer id;
     private String name;
     @Enumerated (EnumType.STRING)
     private UserType type;
-    @Id
+    @Column (name = "birth_date")
     private Date birthDate;
     private String gender;
+    @OneToMany
+    private List<Task> tasks = new ArrayList<>();
 
     public User() {
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public List<Task> getTasks() {
+        return tasks;
+    }
+
+    public void setTasks(List<Task> tasks) {
+        this.tasks = tasks;
     }
 
     public String getName() {
@@ -48,4 +70,6 @@ public class User {
     public void setGender(String gender) {
         this.gender = gender;
     }
+
+
 }
