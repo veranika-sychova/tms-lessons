@@ -12,8 +12,19 @@ public class Task {
     private String description;
     @Enumerated (EnumType.STRING)
     private TaskStatus status;
+    @ManyToOne
+    @JoinColumn (name = "user_id")
+    private User user;
 
     public Task() {
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public Integer getId() {
@@ -46,5 +57,15 @@ public class Task {
 
     public void setStatus(TaskStatus status) {
         this.status = status;
+    }
+
+    @Override
+    public String toString() {
+        return "Task{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", status=" + status +
+                '}';
     }
 }

@@ -7,15 +7,15 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
-import org.hibernate.query.Query;
 
+import javax.persistence.EnumType;
 import java.util.List;
 
-public class UserRepository {
+public class TaskRepository {
 
     private SessionFactory sessionFactory;
 
-    public UserRepository() {
+    public TaskRepository() {
         Configuration configuration = new Configuration();
 
         configuration.setProperty("hibernate.connection.driver_class", "org.postgresql.Driver");
@@ -31,49 +31,30 @@ public class UserRepository {
         sessionFactory = configuration.buildSessionFactory();
     }
 
-
-    public void saveUser(User user) {
+    public void createTask (Task task){
         Session currentSession = sessionFactory.getCurrentSession();
         Transaction transaction = currentSession.beginTransaction();
-        currentSession.save(user);
+        currentSession.save(task);
         transaction.commit();
         currentSession.close();
     }
 
-    public void updateUser(User user) {
+    public void changeTaskStatus (Task task){
         Session currentSession = sessionFactory.getCurrentSession();
         Transaction transaction = currentSession.beginTransaction();
-        currentSession.update(user);
+        currentSession.update(task);
         transaction.commit();
         currentSession.close();
     }
 
-    public void deleteUser(User user) {
+    public Task getTaskById(Integer id){
         Session currentSession = sessionFactory.getCurrentSession();
-        Transaction transaction = currentSession.beginTransaction();
-        currentSession.delete(user);
-        transaction.commit();
-        currentSession.close();
+        return currentSession.get(Task.class, id);
     }
 
-    public User getById(Integer id) {
+    public List<Task> getTaskByUser (Integer userId){
         Session currentSession = sessionFactory.getCurrentSession();
-        return currentSession.get(User.class, id);
+        User user = currentSession.get(User.class, userId);
+        return user.getTasks();
     }
-
-    public List<User> getUsersWithTaskInProgress() {
-        Session currentSession = sessionFactory.getCurrentSession();
-        Transaction transaction = currentSession.beginTransaction();
-        String queryString = "SELECT DISTINCT u FROM User u JOIN u.tasks t WHERE t.status = :taskStatus";
-
-        List<User> users = currentSession.createQuery(queryString, User.class)
-                .setParameter("taskStatus", TaskStatus.IN_PROGRESS)
-                .list();
-        transaction.commit();
-        currentSession.close();
-
-        return users;
-    }
-
-
 }

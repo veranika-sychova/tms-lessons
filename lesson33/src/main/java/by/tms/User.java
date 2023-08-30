@@ -17,8 +17,8 @@ public class User {
     @Column (name = "birth_date")
     private Date birthDate;
     private String gender;
-    @OneToMany
-    private List<Task> tasks = new ArrayList<>();
+    @OneToMany (mappedBy = "user", cascade = CascadeType.ALL)
+    private List<Task> tasks;
 
     public User() {
     }
@@ -71,5 +71,14 @@ public class User {
         this.gender = gender;
     }
 
-
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", type=" + type +
+                ", birthDate=" + birthDate +
+                ", gender='" + gender + '\'' +
+                '}';
+    }
 }
