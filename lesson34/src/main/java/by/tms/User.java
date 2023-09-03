@@ -12,12 +12,12 @@ public class User {
     @Id
     private Integer id;
     private String name;
-    @Enumerated (EnumType.STRING)
+    @Enumerated(EnumType.STRING)
     private UserType type;
-    @Column (name = "birth_date")
+    @Column(name = "birth_date")
     private Date birthDate;
     private String gender;
-    @OneToMany (mappedBy = "user", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Task> tasks;
 
     public User() {
@@ -80,5 +80,15 @@ public class User {
                 ", birthDate=" + birthDate +
                 ", gender='" + gender + '\'' +
                 '}';
+    }
+
+    @PostPersist
+    public void postPersist() {
+        System.out.println("Post persist user " + this.id);
+    }
+
+    @PrePersist
+    public void prePersist() {
+        System.out.println("Pre persist user " + this.id);
     }
 }

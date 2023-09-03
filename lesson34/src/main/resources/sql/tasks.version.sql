@@ -1,0 +1,1 @@
+ALTER TABLE tasks ADD version INT DEFAULT 0;

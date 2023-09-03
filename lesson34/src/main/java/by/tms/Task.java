@@ -15,8 +15,18 @@ public class Task {
     @ManyToOne
     @JoinColumn (name = "user_id")
     private User user;
+    @Version
+    private int version;
 
     public Task() {
+    }
+
+    public int getVersion() {
+        return version;
+    }
+
+    public void setVersion(int version) {
+        this.version = version;
     }
 
     public User getUser() {
@@ -67,5 +77,15 @@ public class Task {
                 ", description='" + description + '\'' +
                 ", status=" + status +
                 '}';
+    }
+
+    @PostPersist
+    public void postPersist() {
+        System.out.println("Post persist task " + this.id);
+    }
+
+    @PrePersist
+    public void prePersist() {
+        System.out.println("Pre persist task " + this.id);
     }
 }

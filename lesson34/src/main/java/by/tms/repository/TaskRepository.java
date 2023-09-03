@@ -9,6 +9,7 @@ import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 
 import javax.persistence.EnumType;
+import javax.persistence.OptimisticLockException;
 import java.util.List;
 
 public class TaskRepository {
@@ -42,10 +43,16 @@ public class TaskRepository {
     public void changeTaskStatus (Task task){
         Session currentSession = sessionFactory.getCurrentSession();
         Transaction transaction = currentSession.beginTransaction();
-        currentSession.update(task);
-        transaction.commit();
-        currentSession.close();
+        try {
+            currentSession.update(task);
+            transaction.commit();
+        } catch (OptimisticLockException e){
+           transaction.rollback();
+        } finally {
+            currentSession.close();
+        }
     }
+
 
     public Task getTaskById(Integer id){
         Session currentSession = sessionFactory.getCurrentSession();

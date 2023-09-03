@@ -9,6 +9,7 @@ import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.query.Query;
 
+import javax.persistence.OptimisticLockException;
 import java.util.List;
 
 public class UserRepository {
@@ -43,9 +44,14 @@ public class UserRepository {
     public void updateUser(User user) {
         Session currentSession = sessionFactory.getCurrentSession();
         Transaction transaction = currentSession.beginTransaction();
-        currentSession.update(user);
-        transaction.commit();
-        currentSession.close();
+        try {
+            currentSession.update(user);
+            transaction.commit();
+        } catch (OptimisticLockException e){
+            transaction.rollback();
+        } finally {
+            currentSession.close();
+        }
     }
 
     public void deleteUser(User user) {
