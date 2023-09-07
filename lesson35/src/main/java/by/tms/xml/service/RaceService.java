@@ -1,8 +1,4 @@
-package by.tms.service;
-
-import by.tms.domain.Couple;
-import by.tms.domain.Horse;
-import by.tms.domain.Rider;
+package by.tms.xml.service;
 
 public interface RaceService {
 

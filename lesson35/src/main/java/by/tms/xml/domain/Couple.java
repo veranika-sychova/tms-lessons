@@ -1,6 +1,4 @@
-package by.tms.domain;
-
-import java.util.Random;
+package by.tms.xml.domain;
 
 public class Couple {
 
@@ -10,7 +8,7 @@ public class Couple {
     private double speed;
 
     public Couple() {
-        this.speed = new Random().nextDouble();
+        this.speed = (int) (Math.random() * 100) / 100.0;
     }
 
     public double getSpeed() {
@@ -52,6 +50,6 @@ public class Couple {
                 ", rider=" + rider +
                 ", horse=" + horse +
                 ", speed=" + speed +
-                '}';
+                "}\n";
     }
 }

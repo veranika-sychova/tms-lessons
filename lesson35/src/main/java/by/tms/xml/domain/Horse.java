@@ -1,4 +1,4 @@
-package by.tms.domain;
+package by.tms.xml.domain;
 
 public class Horse {
 
