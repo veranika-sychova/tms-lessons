@@ -1,11 +1,16 @@
-package by.tms.xml.service;
+package by.tms.annotation.service;
 
-import by.tms.xml.domain.Couple;
+import by.tms.annotation.domain.Couple;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.List;
 
+@Service
 public class RaceServiceImpl implements RaceService {
 
+    @Autowired
     private List<Couple> coupleList;
     private Integer coupleId;
 
@@ -52,6 +57,8 @@ public class RaceServiceImpl implements RaceService {
         } else {
             System.out.println("You lose");
         }
+
+
     }
 
     private int indexOfMinValue(double[] array) {

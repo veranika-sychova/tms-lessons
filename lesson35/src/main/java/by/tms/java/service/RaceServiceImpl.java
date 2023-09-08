@@ -1,8 +1,9 @@
-package by.tms.xml.service;
+package by.tms.java.service;
 
-import by.tms.xml.domain.Couple;
+import by.tms.java.domain.Couple;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.List;
 
 public class RaceServiceImpl implements RaceService {
 
