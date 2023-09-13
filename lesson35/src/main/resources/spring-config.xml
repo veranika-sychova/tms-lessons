@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean name="horse1" class="by.tms.xml.domain.Horse">
+        <property name="id" value="1"/>
+        <property name="name" value="Horse1"/>
+        <property name="color" value="brown"/>
+        <property name="age" value="5"/>
+    </bean>
+
+    <bean name="horse2" class="by.tms.xml.domain.Horse">
+        <property name="id" value="2"/>
+        <property name="name" value="Horse2"/>
+        <property name="color" value="black"/>
+        <property name="age" value="3"/>
+    </bean>
+
+    <bean name="horse3" class="by.tms.xml.domain.Horse">
+        <property name="id" value="3"/>
+        <property name="name" value="Horse3"/>
+        <property name="color" value="white"/>
+        <property name="age" value="3"/>
+    </bean>
+
+    <bean name="rider1" class="by.tms.xml.domain.Rider">
+        <property name="id" value="1"/>
+        <property name="name" value="Rider1"/>
+        <property name="gender" value="male"/>
+        <property name="experience" value="10"/>
+    </bean>
+
+    <bean name="rider2" class="by.tms.xml.domain.Rider">
+        <property name="id" value="2"/>
+        <property name="name" value="Rider2"/>
+        <property name="gender" value="female"/>
+        <property name="experience" value="8"/>
+    </bean>
+
+    <bean name="rider3" class="by.tms.xml.domain.Rider">
+        <property name="id" value="3"/>
+        <property name="name" value="Rider3"/>
+        <property name="gender" value="male"/>
+        <property name="experience" value="11"/>
+    </bean>
+
+    <bean name="couple1" class="by.tms.xml.domain.Couple">
+        <property name="id" value="1"/>
+        <property name="rider" ref="rider1"/>
+        <property name="horse" ref="horse1"/>
+    </bean>
+
+    <bean name="couple2" class="by.tms.xml.domain.Couple">
+        <property name="id" value="2"/>
+        <property name="rider" ref="rider2"/>
+        <property name="horse" ref="horse2"/>
+    </bean>
+
+    <bean name="couple3" class="by.tms.xml.domain.Couple">
+        <property name="id" value="3"/>
+        <property name="rider" ref="rider3"/>
+        <property name="horse" ref="horse3"/>
+    </bean>
+
+    <bean name="raceService" class="by.tms.xml.service.RaceServiceImpl">
+        <property name="coupleList">
+                <list>
+                    <ref bean ="couple1"/>
+                    <ref bean ="couple2"/>
+                    <ref bean ="couple3"/>
+                </list>
+        </property>
+    </bean>
+
+</beans>
