@@ -1,5 +1,6 @@
 package by.tms.controller;
 
+import by.tms.controller.payload.SearchBookRequest;
 import by.tms.exception.BookNameInvalidException;
 import by.tms.exception.BookNotFoundException;
 import by.tms.model.Book;
@@ -28,12 +29,12 @@ public class BookController {
     }
 
     @PostMapping ("/books")
-    public String searchResult (@Valid @NotEmpty @RequestParam String name, BindingResult bindingResult) throws BookNameInvalidException, BookNotFoundException {
+    public String searchResult (@Valid SearchBookRequest request, BindingResult bindingResult, Model model) throws BookNameInvalidException, BookNotFoundException {
         if (bindingResult.hasErrors()){
-            throw new BookNameInvalidException("Book name is invalid");
+            throw new BookNameInvalidException("Book name should not be empty");
         }
-        List<Book> books = bookRepository.searchByName(name);
-        //model.addAttribute("books", books);
+        List<Book> books = bookRepository.searchByName(request.getName());
+        model.addAttribute("books", books);
         return "searchResult.jsp";
 
     }

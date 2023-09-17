@@ -38,7 +38,7 @@ public class BookRepository {
         books.add(book3);
     }
 
-    public List<Book> searchByName (String name) throws BookNameInvalidException, BookNotFoundException{
+    public List<Book> searchByName (String name) throws BookNotFoundException{
 //        if (name == null || name.isEmpty()){
 //            throw new BookNameInvalidException("Book name is invalid");
 //        }
