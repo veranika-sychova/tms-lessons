@@ -1,0 +1,30 @@
+plugins {
+    id 'java'
+    id 'war'
+}
+
+group 'by.tms'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+war{
+    archiveFileName = '38.war'
+}
+
+dependencies {
+    compileOnly 'javax.servlet:javax.servlet-api:3.1.0'
+    implementation group: 'org.springframework', name: 'spring-webmvc', version: '5.3.29'
+
+    implementation 'javax.servlet:jstl:1.2'
+
+
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+}
+
+test {
+    useJUnitPlatform()
+}
