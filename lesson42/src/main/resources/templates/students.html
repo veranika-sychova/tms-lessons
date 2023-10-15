@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Students</title>
+</head>
+<body>
+
+Here is a list of students:
+
+<ul>
+    <li th:each="student : ${students}">
+        <span th:text="${student.name}"></span>
+        <span th:text="${student.id}"></span>
+        <span th:text="${student.groupNumber}"></span>
+    </li>
+</ul>
+
+<form action="/student" method="post">
+Name: <input name="name" type="text"/>
+Group number: <input name="groupNumber" type="text"/>
+    <input type="submit">Add student</input>
+</form>
+
+</body>
+</html>
