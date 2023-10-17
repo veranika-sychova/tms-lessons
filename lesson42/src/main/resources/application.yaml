@@ -1,0 +1,8 @@
+app:
+  name: myApplication
+server:
+  port: 8090
+spring:
+  thymeleaf:
+    prefix: classpath:/templates/
+    suffix: .html
