@@ -3,6 +3,7 @@ package com.tms.spring.boot.controller;
 import com.tms.spring.boot.model.Student;
 import com.tms.spring.boot.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Controller;
 //import org.springframework.transaction.annotation.Transactional;
@@ -25,7 +26,7 @@ public class StudentsController {
 
     @GetMapping("/")
     public String getAllStudents(Model model) {
-        List<Student> all = studentRepository.findAll();
+        List<Student> all = studentRepository.findAllByOrderByPositionAsc();
         model.addAttribute("students", all);
         return "students";
     }
@@ -33,7 +34,7 @@ public class StudentsController {
     @PostMapping("/student")
     public String addNewStudent(@RequestParam String name, @RequestParam String groupNumber,@RequestParam String position, Model model) {
         studentRepository.save(new Student(name, groupNumber, Integer.parseInt(position)));
-        List<Student> all = studentRepository.findAll();
+        List<Student> all = studentRepository.findAllByOrderByPositionAsc();
         model.addAttribute("students", all);
         return "students";
     }
@@ -51,35 +52,37 @@ public class StudentsController {
        return "students";
    }
 
-    //@Transactional
-    // In case of jpa repository uncomment the line above
-//    @PostMapping("/student/order")
-//    public String changeOderNumber(@RequestParam String id, @RequestParam String direction, Model model) {
-//        List<Student> all = studentRepository.findAll();
-//        Student student = studentRepository.getById(id);
-//
-//        int i = all.indexOf(student);
-//        int j = -1;
-//
-//        if (direction.equals("up")) {
-//            j = i - 1;
-//        } else {
-//            j = i + 1;
-//        }
-//
-//        if (j == -1 || j >= all.size()) {
-//            System.out.println("Can not move the selected student.");
-//            model.addAttribute("students", all);
-//            return "students";
-//        }
-//
-//        Student student1 = all.get(j);
-//        int orderI = student.getOrder();
-//        int orderJ = student1.getOrder();
-//        studentRepository.updateStudentsOrder(student, orderJ);
-//        studentRepository.updateStudentsOrder(student1, orderI);
-//        model.addAttribute("students", studentRepository.getAll());
-//        return "students";
-//    }
+//    @Transactional
+//     In case of jpa repository uncomment the line above
+    @PostMapping("/student/order")
+    public String changeOderNumber(@RequestParam String id, @RequestParam String direction, Model model) {
+        List<Student> all = studentRepository.findAllByOrderByPositionAsc();
+        Student student = studentRepository.getReferenceById(id);
+
+        int i = all.indexOf(student);
+        int j = -1;
+
+        if (direction.equals("up")) {
+            j = i - 1;
+        } else {
+            j = i + 1;
+        }
+
+        if (j == -1 || j >= all.size()) {
+            System.out.println("Can not move the selected student.");
+            model.addAttribute("students", all);
+            return "students";
+        }
+
+        Student student1 = all.get(j);
+        int orderI = student.getPosition();
+        int orderJ = student1.getPosition();
+        student.setPosition(orderJ);
+        studentRepository.save(student);
+        student1.setPosition(orderI);
+        studentRepository.save(student1);
+        model.addAttribute("students", studentRepository.findAllByOrderByPositionAsc());
+        return "students";
+    }
 }
 

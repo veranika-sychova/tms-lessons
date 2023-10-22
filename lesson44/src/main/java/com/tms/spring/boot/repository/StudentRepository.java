@@ -10,4 +10,6 @@ public interface StudentRepository extends JpaRepository<Student, String> {
 
     List<Student> findAll (Specification<Student> specification);
 
+    List<Student> findAllByOrderByPositionAsc();
+
 }
