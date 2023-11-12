@@ -1,0 +1,4 @@
+app:
+  name: myApplication
+server:
+  port: 8080
