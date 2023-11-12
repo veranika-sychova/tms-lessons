@@ -12,4 +12,7 @@ public interface StudentRepository extends JpaRepository<Student, String> {
 
     List<Student> findAllByOrderByPositionAsc();
 
+    Student findTopByPositionLessThanOrderByPositionDesc(int position);
+
+    Student findTopByPositionGreaterThanOrderByPositionAsc (int position);
 }

@@ -40,30 +40,27 @@ public class StudentsService {
     }
 
     public void changeOderNumber(String id, String direction) {
-        List<Student> all = repository.findAllByOrderByPositionAsc();
         Student student = repository.getReferenceById(id);
 
-        int i = all.indexOf(student);
-        int j = -1;
+        Student targetStudent = null;
 
         if (direction.equals("up")) {
-            j = i - 1;
+           targetStudent = repository.findTopByPositionLessThanOrderByPositionDesc(student.getPosition());
         } else {
-            j = i + 1;
+            targetStudent = repository.findTopByPositionGreaterThanOrderByPositionAsc(student.getPosition());
         }
 
-        if (j == -1 || j >= all.size()) {
+        if (targetStudent == null) {
             System.out.println("Can not move the selected student.");
             return;
         }
 
-        Student student1 = all.get(j);
         int orderI = student.getPosition();
-        int orderJ = student1.getPosition();
+        int orderJ = targetStudent.getPosition();
         student.setPosition(orderJ);
         repository.save(student);
-        student1.setPosition(orderI);
-        repository.save(student1);
+        targetStudent.setPosition(orderI);
+        repository.save(targetStudent);
     }
 
     }
