@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Students</title>
+</head>
+<body>
+
+Here is a list of students:
+
+<ul>
+    <li th:each="student, iter : ${students}">
+        <span th:text="${student.name}"></span>
+        <span th:text="${student.id}"></span>
+        <span th:text="${student.groupNumber}"></span>
+        <div th:if="${iter.index != 0}">
+            <form method="post" action="/student/order">
+                <input type="hidden" name="direction" value="up"/>
+                <input type="hidden" name="id" th:value="${student.id}"/>
+                <input type="submit" name="up" value="up"></input>
+            </form>
+        </div>
+        <div th:if="${iter.index < students.size-1}">
+            <form method="post" action="/student/order">
+                <input type="hidden" name="direction" value="down"/>
+                <input type="hidden" name="id" th:value="${student.id}"/>
+                <input type="submit" name="down" value="down"></input>
+            </form>
+        </div>
+    </li>
+</ul>
+
+<form action="/student" method="post">
+Name: <input name="name" type="text"/>
+Group number: <input name="groupNumber" type="text"/>
+Position: <input name="position" type="text"/>
+    <input type="submit" value="add student"></input>
+</form>
+
+______________________________________
+<br>
+Find students
+<form action="/find" method="post">
+    Group number: <input name="groupNumber" type="text"/>
+    <input type="submit" value="find students"></input>
+</form>
+
+
+</body>
+</html>
